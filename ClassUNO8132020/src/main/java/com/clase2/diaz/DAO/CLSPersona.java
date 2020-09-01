@@ -36,6 +36,7 @@ public class CLSPersona {
                 persona.setSexo(resultadoDeConsulta.getString("Sexo"));
                 Personas.add(persona);
             }
+            conectar.close();
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);

@@ -51,7 +51,7 @@ public class crudPersona extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tppersona = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
@@ -180,7 +180,7 @@ public class crudPersona extends javax.swing.JPanel {
                 .addGap(26, 26, 26))
         );
 
-        jTabbedPane1.addTab("Operaciones de CRUD", jPanel1);
+        tppersona.addTab("Operaciones de CRUD", jPanel1);
 
         tb_Persona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,11 +193,16 @@ public class crudPersona extends javax.swing.JPanel {
                 "Id", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_Persona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_PersonaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_Persona);
 
         jTabbedPane2.addTab("tab1", jScrollPane1);
 
-        jTabbedPane1.addTab("Mostrar Datos", jTabbedPane2);
+        tppersona.addTab("Mostrar Datos", jTabbedPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -205,14 +210,14 @@ public class crudPersona extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(tppersona)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(tppersona)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -257,6 +262,24 @@ public class crudPersona extends javax.swing.JPanel {
         MostrarTablaPersona();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void tb_PersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_PersonaMouseClicked
+        tppersona.setSelectedIndex(tppersona.indexOfComponent(jPanel1));
+        
+        int fila = tb_Persona.getSelectedRow();
+        
+        String ID = String.valueOf(tb_Persona.getValueAt(fila, 0));
+        String nombre = String.valueOf(tb_Persona.getValueAt(fila, 1));
+        String apellido = String.valueOf(tb_Persona.getValueAt(fila, 2));
+        String edad = String.valueOf(tb_Persona.getValueAt(fila, 3));
+        String sexo = String.valueOf(tb_Persona.getValueAt(fila, 4));
+        
+        txtId.setText(ID);
+        txtNombre.setText(nombre);
+        txtSexo.setText(sexo);
+        txtApellido.setText(apellido);
+        txtEdad.setText(edad);
+    }//GEN-LAST:event_tb_PersonaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -270,9 +293,9 @@ public class crudPersona extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable tb_Persona;
+    private javax.swing.JTabbedPane tppersona;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtId;
