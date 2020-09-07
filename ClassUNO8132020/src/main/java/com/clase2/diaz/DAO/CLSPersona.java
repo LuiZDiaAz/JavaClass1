@@ -61,7 +61,7 @@ public class CLSPersona {
     public void BorrarPersona(Persona Per){
         try {
             CallableStatement Statement = conectar.prepareCall("call SP_D_Persona(?)");
-            Statement.setInt("PIdPersonas", Per.getEdad());
+            Statement.setInt("PIdPersonas", Per.getIdPersona());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Eliminado");
         } catch (Exception e) {
