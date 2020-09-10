@@ -14,8 +14,9 @@ import lombok.*;
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class Estudiante extends Persona{
-    protected int Id;
-    protected int matricula;
-    protected String Usu;
-    protected String pass;
+    private int Id;
+    private int matricula;
+    private String Usu;
+    private String pass;
+    private String NIE;
 }

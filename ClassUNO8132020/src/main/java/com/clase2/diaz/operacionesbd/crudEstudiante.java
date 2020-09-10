@@ -24,11 +24,11 @@ public class crudEstudiante extends javax.swing.JPanel {
      */
     public crudEstudiante() {
         initComponents();
-        String Titulos [] = {"IDESTUDIANTE","MATRICULA","IDPERSONA", "NOMBRE", "USUARIO", "CONTRASEÑA"};
+        String Titulos [] = {"IDESTUDIANTE","MATRICULA","IDPERSONA", "NOMBRE", "USUARIO", "CONTRASEÑA", "NIE"};
         DefaultTableModel df = new DefaultTableModel(null, Titulos);
         CLSJoinestudiantepersona CLSJOINES = new CLSJoinestudiantepersona();
         var  MostrarJoinEstudiantePersona = CLSJOINES.MostrarJoinEstudiantePersona();
-        String filas [] = new String[6];
+        String filas [] = new String[7];
         
         for(var iterador:MostrarJoinEstudiantePersona){
         filas[0] = String.valueOf(iterador.getId());
@@ -37,6 +37,7 @@ public class crudEstudiante extends javax.swing.JPanel {
         filas[3] = iterador.getNombre();
         filas[4] = iterador.getUsu();
         filas[5] = iterador.getPass();
+        filas[6] = iterador.getNIE();
         df.addRow(filas);
         
         
@@ -46,17 +47,18 @@ public class crudEstudiante extends javax.swing.JPanel {
     }
     
     void MostrarTablaEstudiante() {
-        String TITULOS[] = {"IDESTUDIANTE", "MATRICULA", "IDPERSONA", "USUARIO", "CONTRASEÑA"};
+        String TITULOS[] = {"IDESTUDIANTE", "MATRICULA", "IDPERSONA", "USUARIO", "CONTRASEÑA", "NIE"};
         DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
         CLSEstudiante ClaseEstudiante = new CLSEstudiante();
         ArrayList<Estudiante> estudiantes = ClaseEstudiante.MostraEstudiante();
-        String filas [] = new String[5];
+        String filas [] = new String[6];
         for (var IterarDatosEstudiante : estudiantes){
         filas[0] = String.valueOf(IterarDatosEstudiante.getId());
         filas[1] = String.valueOf(IterarDatosEstudiante.getMatricula());
         filas[2] = String.valueOf(IterarDatosEstudiante.getIdPersona());
         filas[3] = IterarDatosEstudiante.getUsu();
         filas[4] = IterarDatosEstudiante.getPass();
+        filas[5] = IterarDatosEstudiante.getNIE();
         ModeloTabla.addRow(filas);
         }
         Tb_Joinpersonaestudiante.setModel(ModeloTabla);
@@ -106,6 +108,8 @@ public class crudEstudiante extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtNIE = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tb_Joinpersonaestudiante = new javax.swing.JTable();
@@ -161,6 +165,8 @@ public class crudEstudiante extends javax.swing.JPanel {
             }
         });
 
+        jLabel7.setText("NIE");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,13 +185,15 @@ public class crudEstudiante extends javax.swing.JPanel {
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtMatricula)
                                     .addComponent(txtIdPersona)
                                     .addComponent(txtUsuario)
-                                    .addComponent(txtContraseña))))
+                                    .addComponent(txtContraseña)
+                                    .addComponent(txtNIE))))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -230,12 +238,16 @@ public class crudEstudiante extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtNIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tpEstudiante.addTab("DATOS", jPanel1);
@@ -271,7 +283,7 @@ public class crudEstudiante extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -302,6 +314,7 @@ public class crudEstudiante extends javax.swing.JPanel {
         estudiante.setIdPersona(Integer.parseInt(txtIdPersona.getText()));
         estudiante.setUsu(txtUsuario.getText());
         estudiante.setPass(txtContraseña.getText());
+        estudiante.setNIE(txtNIE.getText());
         estudiantes.AgregarEstudiante(estudiante);
         MostrarTablaEstudiante();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -314,6 +327,7 @@ public class crudEstudiante extends javax.swing.JPanel {
         estudiante.setIdPersona(Integer.parseInt(txtIdPersona.getText()));
         estudiante.setUsu(txtUsuario.getText());
         estudiante.setPass(txtContraseña.getText());
+        estudiante.setNIE(txtNIE.getText());
         estudiantes.ActualizarEstudiante(estudiante);
         MostrarTablaEstudiante();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -336,12 +350,14 @@ public class crudEstudiante extends javax.swing.JPanel {
         String IDPersona = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 2));
         String Usu = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 4));
         String Pass = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 5));
+        //string NIE = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 6));
         
         txtIdEstudiante.setText(IDEstudiante);
         txtMatricula.setText(Matricula);
         txtIdPersona.setText(IDPersona);
         txtUsuario.setText(Usu);
         txtContraseña.setText(Pass);
+        //txtNIE.setText(NIE);
     }//GEN-LAST:event_Tb_JoinpersonaestudianteMouseClicked
 
     private void Tb_PersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tb_PersonasMouseClicked
@@ -361,6 +377,7 @@ public class crudEstudiante extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -370,6 +387,7 @@ public class crudEstudiante extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdEstudiante;
     private javax.swing.JTextField txtIdPersona;
     private javax.swing.JTextField txtMatricula;
+    private javax.swing.JTextField txtNIE;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

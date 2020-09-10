@@ -35,12 +35,13 @@ public class CLSEstudiante {
                 es.setPass(resultadoDeConsulta.getString("PASS"));
                 ListaUsePass.add(es);
             }
-            String usuariodebasedatos = null;
+            String usuariodebasedatos = "";
             String passdebasedatos = null;
             for (var iterador : ListaUsePass) {
                 usuariodebasedatos = iterador.getUsu();
                 passdebasedatos = iterador.getPass();
             }
+            if(!usuariodebasedatos.isEmpty()){}
             if (usuariodebasedatos.equals(user) && passdebasedatos.equals(Pass)) {
                 return true;
             }
@@ -66,6 +67,7 @@ public class CLSEstudiante {
                 estu.setIdPersona(resultadoDeConsulta.getInt("idPersona"));
                 estu.setUsu(resultadoDeConsulta.getString("USU"));
                 estu.setPass(resultadoDeConsulta.getString("PASS"));
+                estu.setNIE(resultadoDeConsulta.getString("NIE"));
                 estudiantes.add(estu);
             }
             conectar.close();
@@ -79,11 +81,12 @@ public class CLSEstudiante {
     
     public void AgregarEstudiante(Estudiante Est){
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_I_Estudiante(?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_I_Estudiante(?,?,?,?, ?)");
             Statement.setInt("Ematricula", Est.getMatricula());
             Statement.setInt("EidPersona", Est.getIdPersona());
             Statement.setString("EUSU", Est.getUsu());
             Statement.setString("EPASS", Est.getPass());
+            Statement.setString("ENIE", Est.getNIE());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Guardado");
         } catch (Exception e) {
@@ -93,12 +96,13 @@ public class CLSEstudiante {
     
     public void ActualizarEstudiante(Estudiante Est) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_U_Estudiante(?,?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_U_Estudiante(?,?,?,?,?,?)");
             Statement.setInt("Eidestudiante", Est.getId());
             Statement.setInt("Ematricula", Est.getMatricula());
             Statement.setInt("EidPersona", Est.getIdPersona());
             Statement.setString("EUSU", Est.getUsu());
             Statement.setString("EPASS", Est.getPass());
+            Statement.setString("ENIE", Est.getNIE());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Actualizado");
         } catch (Exception e) {
