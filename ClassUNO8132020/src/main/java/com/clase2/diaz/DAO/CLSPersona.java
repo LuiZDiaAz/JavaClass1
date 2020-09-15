@@ -18,10 +18,10 @@ import javax.swing.JOptionPane;
  * @author PREDATOR
  */
 public class CLSPersona {
-    
+
     Conexionbd claseConexionbd = new Conexionbd();
     Connection conectar = claseConexionbd.retornarConexion();
-    
+
     public ArrayList<Persona> MostrarPersona() {
         ArrayList<Persona> Personas = new ArrayList<>();
         try {
@@ -37,15 +37,15 @@ public class CLSPersona {
                 Personas.add(persona);
             }
             conectar.close();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
+
         return Personas;
     }
-    
-    public void AgregarPersonas(Persona Per){
+
+    public void AgregarPersonas(Persona Per) {
         try {
             CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?)");
             Statement.setString("PNombre", Per.getNombre());
@@ -58,7 +58,8 @@ public class CLSPersona {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    public void BorrarPersona(Persona Per){
+
+    public void BorrarPersona(Persona Per) {
         try {
             CallableStatement Statement = conectar.prepareCall("call SP_D_Persona(?)");
             Statement.setInt("PIdPersonas", Per.getIdPersona());

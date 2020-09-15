@@ -24,59 +24,57 @@ public class crudEstudiante extends javax.swing.JPanel {
      */
     public crudEstudiante() {
         initComponents();
-        String Titulos [] = {"IDESTUDIANTE","MATRICULA","IDPERSONA", "NOMBRE", "USUARIO", "CONTRASEÑA", "NIE"};
+        String Titulos[] = {"IDESTUDIANTE", "MATRICULA", "IDPERSONA", "NOMBRE", "USUARIO", "CONTRASEÑA", "NIE"};
         DefaultTableModel df = new DefaultTableModel(null, Titulos);
         CLSJoinestudiantepersona CLSJOINES = new CLSJoinestudiantepersona();
-        var  MostrarJoinEstudiantePersona = CLSJOINES.MostrarJoinEstudiantePersona();
-        String filas [] = new String[7];
-        
-        for(var iterador:MostrarJoinEstudiantePersona){
-        filas[0] = String.valueOf(iterador.getId());
-        filas[1] = String.valueOf(iterador.getMatricula());
-        filas[2] = String.valueOf(iterador.getIdPersona());
-        filas[3] = iterador.getNombre();
-        filas[4] = iterador.getUsu();
-        filas[5] = iterador.getPass();
-        filas[6] = iterador.getNIE();
-        df.addRow(filas);
-        
-        
-        
+        var MostrarJoinEstudiantePersona = CLSJOINES.MostrarJoinEstudiantePersona();
+        String filas[] = new String[7];
+
+        for (var iterador : MostrarJoinEstudiantePersona) {
+            filas[0] = String.valueOf(iterador.getId());
+            filas[1] = String.valueOf(iterador.getMatricula());
+            filas[2] = String.valueOf(iterador.getIdPersona());
+            filas[3] = iterador.getNombre();
+            filas[4] = iterador.getUsu();
+            filas[5] = iterador.getPass();
+            filas[6] = iterador.getNIE();
+            df.addRow(filas);
+
         }
         Tb_Joinpersonaestudiante.setModel(df);
     }
-    
+
     void MostrarTablaEstudiante() {
         String TITULOS[] = {"IDESTUDIANTE", "MATRICULA", "IDPERSONA", "USUARIO", "CONTRASEÑA", "NIE"};
         DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
         CLSEstudiante ClaseEstudiante = new CLSEstudiante();
         ArrayList<Estudiante> estudiantes = ClaseEstudiante.MostraEstudiante();
-        String filas [] = new String[6];
-        for (var IterarDatosEstudiante : estudiantes){
-        filas[0] = String.valueOf(IterarDatosEstudiante.getId());
-        filas[1] = String.valueOf(IterarDatosEstudiante.getMatricula());
-        filas[2] = String.valueOf(IterarDatosEstudiante.getIdPersona());
-        filas[3] = IterarDatosEstudiante.getUsu();
-        filas[4] = IterarDatosEstudiante.getPass();
-        filas[5] = IterarDatosEstudiante.getNIE();
-        ModeloTabla.addRow(filas);
+        String filas[] = new String[6];
+        for (var IterarDatosEstudiante : estudiantes) {
+            filas[0] = String.valueOf(IterarDatosEstudiante.getId());
+            filas[1] = String.valueOf(IterarDatosEstudiante.getMatricula());
+            filas[2] = String.valueOf(IterarDatosEstudiante.getIdPersona());
+            filas[3] = IterarDatosEstudiante.getUsu();
+            filas[4] = IterarDatosEstudiante.getPass();
+            filas[5] = IterarDatosEstudiante.getNIE();
+            ModeloTabla.addRow(filas);
         }
         Tb_Joinpersonaestudiante.setModel(ModeloTabla);
     }
-    
+
     void MostrarTablaPersona() {
         String TITULOS[] = {"ID", "NOMBRE", "APELLIDO", "EDAD", "SEXO"};
         DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
         CLSPersona ClasePersona = new CLSPersona();
         ArrayList<Persona> Personas = ClasePersona.MostrarPersona();
-        String filas [] = new String[5];
-        for (var IterarDatosPersona : Personas){
-        filas[0] = String.valueOf(IterarDatosPersona.getIdPersona());
-        filas[1] = IterarDatosPersona.getNombre();
-        filas[2] = IterarDatosPersona.getApellido();
-        filas[3] = String.valueOf(IterarDatosPersona.getEdad());
-        filas[4] = IterarDatosPersona.getSexo();
-        ModeloTabla.addRow(filas);
+        String filas[] = new String[5];
+        for (var IterarDatosPersona : Personas) {
+            filas[0] = String.valueOf(IterarDatosPersona.getIdPersona());
+            filas[1] = IterarDatosPersona.getNombre();
+            filas[2] = IterarDatosPersona.getApellido();
+            filas[3] = String.valueOf(IterarDatosPersona.getEdad());
+            filas[4] = IterarDatosPersona.getSexo();
+            ModeloTabla.addRow(filas);
         }
         Tb_Personas.setModel(ModeloTabla);
     }
@@ -342,16 +340,16 @@ public class crudEstudiante extends javax.swing.JPanel {
 
     private void Tb_JoinpersonaestudianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tb_JoinpersonaestudianteMouseClicked
         tpEstudiante.setSelectedIndex(tpEstudiante.indexOfComponent(jPanel1));
-        
+
         int fila = Tb_Joinpersonaestudiante.getSelectedRow();
-        
+
         String IDEstudiante = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 0));
         String Matricula = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 1));
         String IDPersona = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 2));
         String Usu = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 4));
         String Pass = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 5));
         //string NIE = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 6));
-        
+
         txtIdEstudiante.setText(IDEstudiante);
         txtMatricula.setText(Matricula);
         txtIdPersona.setText(IDPersona);
@@ -361,7 +359,7 @@ public class crudEstudiante extends javax.swing.JPanel {
     }//GEN-LAST:event_Tb_JoinpersonaestudianteMouseClicked
 
     private void Tb_PersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tb_PersonasMouseClicked
-        
+
     }//GEN-LAST:event_Tb_PersonasMouseClicked
 
 

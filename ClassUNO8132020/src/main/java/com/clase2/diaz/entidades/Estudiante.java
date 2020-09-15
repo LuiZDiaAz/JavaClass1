@@ -12,7 +12,7 @@ import lombok.*;
  * @author PREDATOR
  */
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class Estudiante extends Persona{
     private int Id;
     private int matricula;

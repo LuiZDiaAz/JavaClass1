@@ -84,16 +84,20 @@ public class frmLogin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnLoginActionPerformed
-        CLSEstudiante est = new CLSEstudiante();
         String user = txtUsuario.getText();
         String pass = txtContrasena.getText();
+        if (!user.isEmpty() && !pass.isEmpty()) {
+            CLSEstudiante est = new CLSEstudiante();
 
-        var variablecontenedoradeconsultabd = est.LoginEstudiante(user, pass);
+            var variablecontenedoradeconsultabd = est.LoginEstudiante(user, pass);
 
-        if (variablecontenedoradeconsultabd == true) {
-            JOptionPane.showMessageDialog(null, "Welcome");
+            if (variablecontenedoradeconsultabd == true) {
+                JOptionPane.showMessageDialog(null, "Welcome");
+            } else {
+                JOptionPane.showMessageDialog(null, "Stop");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Stop");
+            JOptionPane.showMessageDialog(null, "Llenar los campos");
         }
     }//GEN-LAST:event_bttnLoginActionPerformed
 

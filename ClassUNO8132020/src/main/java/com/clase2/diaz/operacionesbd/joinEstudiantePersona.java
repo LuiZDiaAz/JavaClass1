@@ -19,20 +19,18 @@ public class joinEstudiantePersona extends javax.swing.JPanel {
      */
     public joinEstudiantePersona() {
         initComponents();
-        String Titulos [] = {"NOMBRE","APELLIDO","MATRICULA"};
+        String Titulos[] = {"NOMBRE", "APELLIDO", "MATRICULA"};
         DefaultTableModel df = new DefaultTableModel(null, Titulos);
         CLSjoinpersonaestudiante CLSJOINPE = new CLSjoinpersonaestudiante();
-        var  MostrarJoinEstudiantePersona = CLSJOINPE.MostrarJoinEstudiantePersona();
-        String filas [] = new String[4];
-        
-        for(var iterador:MostrarJoinEstudiantePersona){
-        filas[0] = iterador.getNombre();
-        filas[1] = iterador.getApellido();
-        filas[2] = String.valueOf(iterador.getMatricula());
-        df.addRow(filas);
-        
-        
-        
+        var MostrarJoinEstudiantePersona = CLSJOINPE.MostrarJoinEstudiantePersona();
+        String filas[] = new String[4];
+
+        for (var iterador : MostrarJoinEstudiantePersona) {
+            filas[0] = iterador.getNombre();
+            filas[1] = iterador.getApellido();
+            filas[2] = String.valueOf(iterador.getMatricula());
+            df.addRow(filas);
+
         }
         JTJoinEstudiantePersona.setModel(df);
     }

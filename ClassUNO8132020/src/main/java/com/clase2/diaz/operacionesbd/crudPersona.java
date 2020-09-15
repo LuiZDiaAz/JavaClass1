@@ -30,14 +30,14 @@ public class crudPersona extends javax.swing.JPanel {
         DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
         CLSPersona ClasePersona = new CLSPersona();
         ArrayList<Persona> Personas = ClasePersona.MostrarPersona();
-        String filas [] = new String[5];
-        for (var IterarDatosPersona : Personas){
-        filas[0] = String.valueOf(IterarDatosPersona.getIdPersona());
-        filas[1] = IterarDatosPersona.getNombre();
-        filas[2] = IterarDatosPersona.getApellido();
-        filas[3] = String.valueOf(IterarDatosPersona.getEdad());
-        filas[4] = IterarDatosPersona.getSexo();
-        ModeloTabla.addRow(filas);
+        String filas[] = new String[5];
+        for (var IterarDatosPersona : Personas) {
+            filas[0] = String.valueOf(IterarDatosPersona.getIdPersona());
+            filas[1] = IterarDatosPersona.getNombre();
+            filas[2] = IterarDatosPersona.getApellido();
+            filas[3] = String.valueOf(IterarDatosPersona.getEdad());
+            filas[4] = IterarDatosPersona.getSexo();
+            ModeloTabla.addRow(filas);
         }
         tb_Persona.setModel(ModeloTabla);
     }
@@ -264,15 +264,15 @@ public class crudPersona extends javax.swing.JPanel {
 
     private void tb_PersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_PersonaMouseClicked
         tppersona.setSelectedIndex(tppersona.indexOfComponent(jPanel1));
-        
+
         int fila = tb_Persona.getSelectedRow();
-        
+
         String ID = String.valueOf(tb_Persona.getValueAt(fila, 0));
         String nombre = String.valueOf(tb_Persona.getValueAt(fila, 1));
         String apellido = String.valueOf(tb_Persona.getValueAt(fila, 2));
         String edad = String.valueOf(tb_Persona.getValueAt(fila, 3));
         String sexo = String.valueOf(tb_Persona.getValueAt(fila, 4));
-        
+
         txtId.setText(ID);
         txtNombre.setText(nombre);
         txtSexo.setText(sexo);

@@ -18,16 +18,17 @@ import javax.swing.JOptionPane;
  * @author PREDATOR
  */
 public class CLSJoinestudiantepersona {
+
     Conexionbd cn = new Conexionbd();
     Connection con = cn.retornarConexion();
-    
+
     public ArrayList<Estudiante> MostrarJoinEstudiantePersona() {
         ArrayList<Estudiante> lista = new ArrayList<>();
-        
+
         try {
             CallableStatement st = con.prepareCall("call SP_S_JOINESTUDIANTEPERSONA ()");
             ResultSet rs = st.executeQuery();
-            while (rs.next()) {                
+            while (rs.next()) {
                 Estudiante es = new Estudiante();
                 es.setId(rs.getInt("idestudiante"));
                 es.setMatricula(rs.getInt("matricula"));
@@ -35,7 +36,7 @@ public class CLSJoinestudiantepersona {
                 es.setNombre(rs.getString("Nombre"));
                 es.setUsu(rs.getString("USU"));
                 es.setPass(rs.getString("PASS"));
-                
+
                 lista.add(es);
             }
         } catch (Exception e) {

@@ -5,18 +5,18 @@
  */
 package com.clase2.diaz.entidades;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  *
  * @author PREDATOR
  */
 @Data
-public class Persona {
+public class Profesor {
 
-    protected int idPersona;
-    protected String Nombre;
-    protected String Apellido;
-    protected int Edad;
-    protected String Sexo;
+    private int iDpro;
+    private int iDpersona;
+    private String Dui;
+    private String Usua;
+    private String Passw;
 }
