@@ -5,6 +5,7 @@
  */
 package com.clase2.diaz.entidades;
 
+import java.util.Date;
 import lombok.Data;
 
 /**
@@ -19,4 +20,5 @@ public class Persona {
     protected String Apellido;
     protected int Edad;
     protected String Sexo;
+    protected Date Fecha;
 }

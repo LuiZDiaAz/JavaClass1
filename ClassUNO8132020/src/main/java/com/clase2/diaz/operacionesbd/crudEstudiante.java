@@ -11,6 +11,7 @@ import com.clase2.diaz.DAO.CLSPersona;
 import com.clase2.diaz.entidades.Estudiante;
 import com.clase2.diaz.entidades.Persona;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +23,24 @@ public class crudEstudiante extends javax.swing.JPanel {
     /**
      * Creates new form crudEstudiante
      */
+    String ValueMember[];
+    int contador = 0;
+    void displayMember(){
+        DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
+        CLSPersona ClasePersona = new CLSPersona();
+        ArrayList<Persona> Personas = ClasePersona.MostrarPersona();
+        ValueMember = new String[Personas.size()];
+        String filas[] = new String[5];
+        for (var IterarDatosPersona : Personas) {
+            filas[0] = String.valueOf(IterarDatosPersona.getIdPersona());
+            filas[1] = IterarDatosPersona.getNombre();
+            ValueMember[contador] = filas[0];
+            cbdefault.addElement(filas[1]);
+            contador++;
+        }
+        cbPersona.setModel(cbdefault);
+    }
+    
     public crudEstudiante() {
         initComponents();
         String Titulos[] = {"IDESTUDIANTE", "MATRICULA", "IDPERSONA", "NOMBRE", "USUARIO", "CONTRASEÑA", "NIE"};
@@ -62,7 +81,7 @@ public class crudEstudiante extends javax.swing.JPanel {
         Tb_Joinpersonaestudiante.setModel(ModeloTabla);
     }
 
-    void MostrarTablaPersona() {
+    /*void MostrarTablaPersona() {
         String TITULOS[] = {"ID", "NOMBRE", "APELLIDO", "EDAD", "SEXO"};
         DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
         CLSPersona ClasePersona = new CLSPersona();
@@ -77,7 +96,7 @@ public class crudEstudiante extends javax.swing.JPanel {
             ModeloTabla.addRow(filas);
         }
         Tb_Personas.setModel(ModeloTabla);
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,7 +114,6 @@ public class crudEstudiante extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtIdEstudiante = new javax.swing.JTextField();
         txtMatricula = new javax.swing.JTextField();
         txtIdPersona = new javax.swing.JTextField();
         txtUsuario = new javax.swing.JTextField();
@@ -108,6 +126,8 @@ public class crudEstudiante extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtNIE = new javax.swing.JTextField();
+        cbPersona = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tb_Joinpersonaestudiante = new javax.swing.JTable();
@@ -165,6 +185,15 @@ public class crudEstudiante extends javax.swing.JPanel {
 
         jLabel7.setText("NIE");
 
+        cbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -173,34 +202,32 @@ public class crudEstudiante extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMatricula)
-                                    .addComponent(txtIdPersona)
-                                    .addComponent(txtUsuario)
-                                    .addComponent(txtContraseña)
-                                    .addComponent(txtNIE))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3))
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtMatricula, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                            .addComponent(txtIdPersona)
+                            .addComponent(txtUsuario)
+                            .addComponent(txtContraseña)
+                            .addComponent(txtNIE)
+                            .addComponent(cbPersona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(286, 286, 286)
                         .addComponent(jLabel6)))
@@ -218,11 +245,12 @@ public class crudEstudiante extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                     .addComponent(jLabel1)
-                                                    .addComponent(txtIdEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(cbPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jLabel2))
                                             .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -240,11 +268,12 @@ public class crudEstudiante extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtNIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -274,7 +303,7 @@ public class crudEstudiante extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -309,7 +338,8 @@ public class crudEstudiante extends javax.swing.JPanel {
         CLSEstudiante estudiantes = new CLSEstudiante();
         Estudiante estudiante = new Estudiante();
         estudiante.setMatricula(Integer.parseInt(txtMatricula.getText()));
-        estudiante.setIdPersona(Integer.parseInt(txtIdPersona.getText()));
+        estudiante.setIdPersona(Integer.parseInt(ValueMember[cbPersona.getSelectedIndex()]));
+        //estudiante.setIdPersona(Integer.parseInt(txtIdPersona.getText()));
         estudiante.setUsu(txtUsuario.getText());
         estudiante.setPass(txtContraseña.getText());
         estudiante.setNIE(txtNIE.getText());
@@ -320,7 +350,7 @@ public class crudEstudiante extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CLSEstudiante estudiantes = new CLSEstudiante();
         Estudiante estudiante = new Estudiante();
-        estudiante.setId(Integer.parseInt(txtIdEstudiante.getText()));
+        estudiante.setIdPersona(Integer.parseInt(ValueMember[cbPersona.getSelectedIndex()]));
         estudiante.setMatricula(Integer.parseInt(txtMatricula.getText()));
         estudiante.setIdPersona(Integer.parseInt(txtIdPersona.getText()));
         estudiante.setUsu(txtUsuario.getText());
@@ -333,7 +363,7 @@ public class crudEstudiante extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         CLSEstudiante estudiantes = new CLSEstudiante();
         Estudiante estudiante = new Estudiante();
-        estudiante.setId(Integer.parseInt(txtIdEstudiante.getText()));
+        estudiante.setIdPersona(Integer.parseInt(ValueMember[cbPersona.getSelectedIndex()]));
         estudiantes.BorrarEstudiante(estudiante);
         MostrarTablaEstudiante();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -350,7 +380,7 @@ public class crudEstudiante extends javax.swing.JPanel {
         String Pass = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 5));
         //string NIE = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 6));
 
-        txtIdEstudiante.setText(IDEstudiante);
+        //txtIdEstudiante.setText(IDEstudiante);
         txtMatricula.setText(Matricula);
         txtIdPersona.setText(IDPersona);
         txtUsuario.setText(Usu);
@@ -362,13 +392,19 @@ public class crudEstudiante extends javax.swing.JPanel {
 
     }//GEN-LAST:event_Tb_PersonasMouseClicked
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //txtIdPersona.setText(ValueMember[cbPersona.getSelectedIndex()]);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tb_Joinpersonaestudiante;
     private javax.swing.JTable Tb_Personas;
+    private javax.swing.JComboBox<String> cbPersona;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -382,7 +418,6 @@ public class crudEstudiante extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane tpEstudiante;
     private javax.swing.JTextField txtContraseña;
-    private javax.swing.JTextField txtIdEstudiante;
     private javax.swing.JTextField txtIdPersona;
     private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNIE;
