@@ -11,6 +11,7 @@ import com.clase2.diaz.DAO.CLSPersona;
 import com.clase2.diaz.entidades.Estudiante;
 import com.clase2.diaz.entidades.Persona;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,8 +30,9 @@ public class crudEstudiante extends javax.swing.JPanel {
         DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
         CLSPersona ClasePersona = new CLSPersona();
         ArrayList<Persona> Personas = ClasePersona.MostrarPersona();
-        ValueMember = new String[Personas.size()];
+        ValueMember = new String[Personas.size()+1];
         String filas[] = new String[5];
+        cbdefault.addElement("");
         for (var IterarDatosPersona : Personas) {
             filas[0] = String.valueOf(IterarDatosPersona.getIdPersona());
             filas[1] = IterarDatosPersona.getNombre();
@@ -115,11 +117,9 @@ public class crudEstudiante extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtMatricula = new javax.swing.JTextField();
-        txtIdPersona = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         txtUsuario = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Tb_Personas = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -141,24 +141,6 @@ public class crudEstudiante extends javax.swing.JPanel {
         jLabel4.setText("Usuario");
 
         jLabel5.setText("Contraseña");
-
-        Tb_Personas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        Tb_Personas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Tb_PersonasMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(Tb_Personas);
 
         jLabel6.setText("DATOS");
 
@@ -220,55 +202,48 @@ public class crudEstudiante extends javax.swing.JPanel {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMatricula, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                            .addComponent(txtIdPersona)
+                            .addComponent(txtMatricula)
                             .addComponent(txtUsuario)
                             .addComponent(txtContraseña)
                             .addComponent(txtNIE)
-                            .addComponent(cbPersona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbPersona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(286, 286, 286)
                         .addComponent(jLabel6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel6)
-                .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(64, 64, 64)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jLabel1)
-                                                    .addComponent(cbPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel2))
-                                            .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel3))
-                                    .addComponent(txtIdPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel4))
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2))
+                            .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cbPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtNIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -337,9 +312,9 @@ public class crudEstudiante extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CLSEstudiante estudiantes = new CLSEstudiante();
         Estudiante estudiante = new Estudiante();
+        estudiante.setId(Integer.parseInt(txtId.getText()));
         estudiante.setMatricula(Integer.parseInt(txtMatricula.getText()));
         estudiante.setIdPersona(Integer.parseInt(ValueMember[cbPersona.getSelectedIndex()]));
-        //estudiante.setIdPersona(Integer.parseInt(txtIdPersona.getText()));
         estudiante.setUsu(txtUsuario.getText());
         estudiante.setPass(txtContraseña.getText());
         estudiante.setNIE(txtNIE.getText());
@@ -350,9 +325,9 @@ public class crudEstudiante extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CLSEstudiante estudiantes = new CLSEstudiante();
         Estudiante estudiante = new Estudiante();
-        estudiante.setIdPersona(Integer.parseInt(ValueMember[cbPersona.getSelectedIndex()]));
+        estudiante.setId(Integer.parseInt(txtId.getText()));
         estudiante.setMatricula(Integer.parseInt(txtMatricula.getText()));
-        estudiante.setIdPersona(Integer.parseInt(txtIdPersona.getText()));
+        estudiante.setIdPersona(Integer.parseInt(ValueMember[cbPersona.getSelectedIndex()]));
         estudiante.setUsu(txtUsuario.getText());
         estudiante.setPass(txtContraseña.getText());
         estudiante.setNIE(txtNIE.getText());
@@ -363,7 +338,7 @@ public class crudEstudiante extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         CLSEstudiante estudiantes = new CLSEstudiante();
         Estudiante estudiante = new Estudiante();
-        estudiante.setIdPersona(Integer.parseInt(ValueMember[cbPersona.getSelectedIndex()]));
+        estudiante.setId(Integer.parseInt(txtId.getText()));
         estudiantes.BorrarEstudiante(estudiante);
         MostrarTablaEstudiante();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -380,17 +355,27 @@ public class crudEstudiante extends javax.swing.JPanel {
         String Pass = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 5));
         //string NIE = String.valueOf(Tb_Joinpersonaestudiante.getValueAt(fila, 6));
 
-        //txtIdEstudiante.setText(IDEstudiante);
+        txtId.setText(IDEstudiante);
         txtMatricula.setText(Matricula);
-        txtIdPersona.setText(IDPersona);
+        //cbPersona.setSelectedIndex(0);
         txtUsuario.setText(Usu);
         txtContraseña.setText(Pass);
         //txtNIE.setText(NIE);
+        
+        int seleccionadordevista = 0;
+        /*for (var iterar: ValueMember) {
+            if (IDPersona.equals(iterar)) {
+                cbPersona.setSelectedIndex(seleccionadordevista);
+            }
+            seleccionadordevista+=1;
+        }*/
+        for(var it: ValueMember){
+            if (IDPersona.equals(it)){
+                cbPersona.setSelectedIndex(seleccionadordevista);
+            }
+            seleccionadordevista+=1;
+        }
     }//GEN-LAST:event_Tb_JoinpersonaestudianteMouseClicked
-
-    private void Tb_PersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tb_PersonasMouseClicked
-
-    }//GEN-LAST:event_Tb_PersonasMouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //txtIdPersona.setText(ValueMember[cbPersona.getSelectedIndex()]);
@@ -399,7 +384,6 @@ public class crudEstudiante extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tb_Joinpersonaestudiante;
-    private javax.swing.JTable Tb_Personas;
     private javax.swing.JComboBox<String> cbPersona;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -414,11 +398,10 @@ public class crudEstudiante extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane tpEstudiante;
     private javax.swing.JTextField txtContraseña;
-    private javax.swing.JTextField txtIdPersona;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNIE;
     private javax.swing.JTextField txtUsuario;
